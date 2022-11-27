@@ -9,7 +9,10 @@ const ReviewsController = (app) => {
 
     const findAllReviews = async (req, res) => {
         const reviews = await dao.findAllReviews();
-        res.json(reviews);
+        var result = []
+        reviews.forEach(r => result.push(r));
+        result.sort((r1, r2) => r2.time - r1.time);
+        res.json(result);
     };
 
     // const deleteReview = async (req, res) => {
