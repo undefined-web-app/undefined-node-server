@@ -1,7 +1,4 @@
 import * as dao from "./reviews-dao.js";
-import reviews from "./reviews.js";
-
-let rs = reviews;
 
 const ReviewsController = (app) => {
     const createReview = async (req, res) => {
@@ -11,8 +8,8 @@ const ReviewsController = (app) => {
     };
 
     const findAllReviews = async (req, res) => {
-        // const reviews = await dao.findAllReviews();
-        res.json(rs);
+        const reviews = await dao.findAllReviews();
+        res.json(reviews);
     };
 
     // const deleteReview = async (req, res) => {

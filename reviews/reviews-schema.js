@@ -8,7 +8,7 @@ const reviewsSchema = mongoose.Schema(
         score: Number,
         imdbID: { type: String, required: true }
     },
-    { collection: "review" }
+    { collection: "reviews" }
 );
 
 export default reviewsSchema;
