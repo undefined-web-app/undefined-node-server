@@ -25,13 +25,13 @@ const UsersController = (app) => {
     res.json(status);
   };
 
-  app.post("/user", createUser);
+  app.post("/users", createUser);
 
-  app.get("/user", findAllUsers);
+  app.get("/users", findAllUsers);
 
-  app.delete("/user/:uid", deleteUser);
+  app.delete("/users/:uid", deleteUser);
 
-  app.put("/user/:uid", updateUser);
+  app.put("/users/:uid", updateUser);
 
   app.post("/register", () => {});
 

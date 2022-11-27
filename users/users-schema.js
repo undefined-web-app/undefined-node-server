@@ -9,7 +9,7 @@ const usersSchema = mongoose.Schema(
     email: String,
     dob: Date,
   },
-  { collection: "user" }
+  { collection: "users" }
 );
 
 export default usersSchema;
