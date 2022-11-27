@@ -1,0 +1,14 @@
+import mongoose from "mongoose";
+
+const reviewsSchema = mongoose.Schema(
+    {
+        username: { type: String, required: true },
+        password: { type: String, required: true },
+        content: { type: String, required: true },
+        score: Number,
+        imdbID: { type: String, required: true }
+    },
+    { collection: "review" }
+);
+
+export default reviewsSchema;
