@@ -9,7 +9,7 @@ const ReviewsController = (app) => {
     };
 
     const findAllReviews = async (req, res) => {
-        const params = req.body;
+        const params = req.query;
         let reviews = null;
         if (params.imdbID !== undefined) {
             reviews = await dao.findReviewByIMDBID(params.imdbID);
