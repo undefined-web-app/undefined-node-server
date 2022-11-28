@@ -1,5 +1,5 @@
 import express from 'express';
-
+import movieController from "./searchMovies/movie-controller.js";
 const app = express()
-
-app.listen(4000);
+movieController(app)
+app.listen("4000");
