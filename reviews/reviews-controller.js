@@ -1,4 +1,5 @@
 import * as dao from "./reviews-dao.js";
+import {findByUserName, findReviewByIMDBID} from "./reviews-dao.js";
 
 const ReviewsController = (app) => {
     const createReview = async (req, res) => {
@@ -8,11 +9,20 @@ const ReviewsController = (app) => {
     };
 
     const findAllReviews = async (req, res) => {
-        const reviews = await dao.findAllReviews();
-        var result = []
-        reviews.forEach(r => result.push(r));
-        result.sort((r1, r2) => r2.time - r1.time);
-        res.json(result);
+        const params = req.body;
+        let reviews = null;
+        if (params.imdbID !== undefined) {
+            reviews = await dao.findReviewByIMDBID(params.imdbID);
+        }
+        else if (params.username !== undefined) {
+            reviews = await dao.findByUserName(params.username);
+        }
+        else
+        {
+            reviews = await dao.findAllReviews();
+        }
+        reviews.sort((r1, r2) => r2.time - r1.time);
+        res.json(reviews);
     };
 
     // const deleteReview = async (req, res) => {

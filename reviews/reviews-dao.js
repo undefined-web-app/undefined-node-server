@@ -4,7 +4,10 @@ export const createReview = (review) => reviewsModel.create(review);
 
 export const findAllReviews = () => reviewsModel.find();
 
-// export const findReviewById = (uid) => reviewsModel.findById(uid);
+export const findReviewByIMDBID = (imdbID) => reviewsModel.find({imdbID: imdbID});
+
+export const findByUserName = (username) => reviewsModel.find({username: username});
+
 //
 // export const findByReviewname = (reviewname) => reviewsModel.findOne({ reviewname });
 //
