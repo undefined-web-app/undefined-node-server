@@ -54,6 +54,19 @@ const UsersController = (app) => {
     res.json(existingUser);
   };
 
+  const profile = async (req, res) => {
+    if (currentUser) {
+      res.json(currentUser);
+      return;
+    }
+    res.sendStatus(403);
+  };
+
+  const logout = (req, res) => {
+    currentUser = null;
+    res.sendStatus(200);
+  };
+
   app.post("/users", createUser);
 
   app.get("/users", findAllUsers);
@@ -66,7 +79,9 @@ const UsersController = (app) => {
 
   app.post("/login", login);
 
-  app.post("/logout", () => {});
+  app.post("/profile", profile);
+
+  app.post("/logout", logout);
 };
 
 export default UsersController;
