@@ -25,7 +25,9 @@ const UsersController = (app) => {
     const uid = req.params.uid;
     const updates = req.body;
     const status = await dao.updateUser(uid, updates);
-    res.json(status);
+    currentUser = await dao.findUserById(uid);
+    console.log(currentUser);
+    res.json(currentUser);
   };
 
   const register = async (req, res) => {
