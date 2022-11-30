@@ -26,7 +26,7 @@ const ReviewsController = (app) => {
     };
 
     const deleteReview = async (req, res) => {
-        const rid = req.param.rid;
+        const rid = req.params.rid;
         const status = await dao.deleteReview(rid);
         res.json(status);
     };
