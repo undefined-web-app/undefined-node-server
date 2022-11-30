@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import UsersController from "./users/users-controller.js";
 import ReviewsController from "./reviews/reviews-controller.js";
+import bookmarkController from "./bookmarks/bookmark-controller.js";
 
 /*const options = {
   useNewUrlParser: true,
@@ -27,5 +28,6 @@ app.use(express.json());
 
 UsersController(app);
 ReviewsController(app);
+bookmarkController(app);
 
 app.listen(process.env.PORT || 4000);
