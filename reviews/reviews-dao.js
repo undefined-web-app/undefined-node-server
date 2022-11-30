@@ -8,6 +8,8 @@ export const findReviewByIMDBID = (imdbID) => reviewsModel.find({imdbID: imdbID}
 
 export const findByUserName = (username) => reviewsModel.find({username: username});
 
+export const deleteReview = (rid) => reviewsModel.deleteOne({ _id: rid });
+
 //
 // export const findByReviewname = (reviewname) => reviewsModel.findOne({ reviewname });
 //

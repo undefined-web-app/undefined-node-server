@@ -25,18 +25,18 @@ const ReviewsController = (app) => {
         res.json(reviews);
     };
 
-    // const deleteReview = async (req, res) => {
-    //     const rid = req.param.rid;
-    //     const status = await dao.deleteReview(rid);
-    //     res.json(status);
-    // };
-    //
+    const deleteReview = async (req, res) => {
+        const rid = req.param.rid;
+        const status = await dao.deleteReview(rid);
+        res.json(status);
+    };
+
 
     app.post("/review", createReview);
 
     app.get("/review", findAllReviews);
 
-    // app.delete("/review/:rid", deleteReview);
+    app.delete("/review/:rid", deleteReview);
 };
 
 export default ReviewsController;
