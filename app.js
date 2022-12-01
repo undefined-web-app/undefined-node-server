@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import session from "express-session";
 import UsersController from "./users/users-controller.js";
 import ReviewsController from "./reviews/reviews-controller.js";
 import bookmarkController from "./bookmarks/bookmark-controller.js";
@@ -23,7 +24,20 @@ mongoose.connect(
 );
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
+app.use(
+  session({
+    secret: "should be environment variable!",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 app.use(express.json());
 
 UsersController(app);

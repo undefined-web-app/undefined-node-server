@@ -32,19 +32,19 @@ const UsersController = (app) => {
 
   const register = async (req, res) => {
     const user = req.body;
-    const existingUser = await findByUsername(user.username);
+    const existingUser = await dao.findByUsername(user.username);
     if (existingUser) {
       res.sendStatus(403);
       return;
     }
-    const actualUser = await dao.createUser(user);
-    currentUser = actualUser;
-    res.json(actualUser);
+    const currentUser = await dao.createUser(user);
+    req.session["currentUser"] = currentUser;
+    res.json(currentUser);
   };
 
   const login = async (req, res) => {
     const credentials = req.body;
-    const existingUser = await findByCredentials(
+    const existingUser = await dao.findByCredentials(
       credentials.username,
       credentials.password
     );
@@ -52,6 +52,7 @@ const UsersController = (app) => {
       res.sendStatus(403);
       return;
     }
+    req.session["currentUser"] = existingUser;
     currentUser = existingUser;
     res.json(existingUser);
   };
