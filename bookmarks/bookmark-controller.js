@@ -4,7 +4,6 @@ import * as bookmarkDao from '../bookmarks/bookmark-dao.js'
 
 const findBookmarksByUserId = async (req, res) => {
     const userid = req.params.uid;
-    console.log(userid);
     const bookmarks = await bookmarkDao.findBookMarkById(userid)
     res.json(bookmarks);
 }

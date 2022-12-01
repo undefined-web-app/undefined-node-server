@@ -1,7 +1,7 @@
 import * as dao from "./users-dao.js";
 import { findByCredentials, findByUsername } from "./users-dao.js";
 
-let currentUser = null;
+// let currentUser = null;
 
 const UsersController = (app) => {
   const createUser = async (req, res) => {
@@ -25,8 +25,7 @@ const UsersController = (app) => {
     const uid = req.params.uid;
     const updates = req.body;
     const status = await dao.updateUser(uid, updates);
-    currentUser = await dao.findUserById(uid);
-    console.log(currentUser);
+    const currentUser = await dao.findUserById(uid);
     res.json(currentUser);
   };
 
@@ -39,10 +38,14 @@ const UsersController = (app) => {
     }
     const currentUser = await dao.createUser(user);
     req.session["currentUser"] = currentUser;
+    req.session.save();
     res.json(currentUser);
   };
 
   const login = async (req, res) => {
+    if (req.session.currentUser) {
+      return res.json(req.session.currentUser);
+    }
     const credentials = req.body;
     const existingUser = await dao.findByCredentials(
       credentials.username,
@@ -53,20 +56,15 @@ const UsersController = (app) => {
       return;
     }
     req.session["currentUser"] = existingUser;
-    currentUser = existingUser;
     res.json(existingUser);
   };
 
   const profile = async (req, res) => {
-    if (currentUser) {
-      res.json(currentUser);
-      return;
-    }
     res.sendStatus(403);
   };
 
   const logout = (req, res) => {
-    currentUser = null;
+    req.session.destroy();
     res.sendStatus(200);
   };
 

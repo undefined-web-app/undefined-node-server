@@ -31,7 +31,6 @@ const ReviewsController = (app) => {
         res.json(status);
     };
 
-
     app.post("/review", createReview);
 
     app.get("/review", findAllReviews);
