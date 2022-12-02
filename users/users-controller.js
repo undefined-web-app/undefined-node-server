@@ -73,6 +73,16 @@ const UsersController = (app) => {
     res.json({username, uid});
   }
 
+  const findUserByUsername = async (req, res) => {
+    const username = req.params.username;
+    const user = await dao.findUserByUsername(username);
+    if (user) {
+      res.json(user);
+      return;
+    }
+    res.sendStatus(404);
+  };
+
   app.post("/users", createUser);
 
   app.get("/users", findAllUsers);
@@ -90,6 +100,8 @@ const UsersController = (app) => {
   app.post("/profile", profile);
 
   app.post("/logout", logout);
+
+  app.get("/profile/:username", findUserByUsername);
 };
 
 export default UsersController;

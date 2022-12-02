@@ -23,3 +23,6 @@ export const updateUser = (uid, userUpdates) =>
   usersModel.updateOne({ _id: uid }, { $set: userUpdates });
 
 export const addLike = (uid, username) => usersModel.findOneAndUpdate({_id: uid}, {$push: {likes: username}});
+
+export const findUserByUsername = (username) =>
+  usersModel.findOne({ username });
