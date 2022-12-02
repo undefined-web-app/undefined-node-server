@@ -1,7 +1,4 @@
 import * as dao from "./users-dao.js";
-import { findByCredentials, findByUsername } from "./users-dao.js";
-
-// let currentUser = null;
 
 const UsersController = (app) => {
   const createUser = async (req, res) => {
@@ -68,6 +65,14 @@ const UsersController = (app) => {
     res.sendStatus(200);
   };
 
+  const addLike = (req, res) => {
+    const uid = req.body.uid;
+    const username = req.body.username;
+    console.log(username);
+    dao.addLike(uid, username);
+    res.json({username, uid});
+  }
+
   app.post("/users", createUser);
 
   app.get("/users", findAllUsers);
@@ -75,6 +80,8 @@ const UsersController = (app) => {
   app.delete("/users/:uid", deleteUser);
 
   app.put("/users/:uid", updateUser);
+
+  app.put("/users/likes/:uid", addLike);
 
   app.post("/register", register);
 
