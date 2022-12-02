@@ -59,6 +59,14 @@ const UsersController = (app) => {
     res.json(existingUser);
   };
 
+  /*const profile = async (req, res) => {
+    if (req.session["currentUser"]) {
+      res.send(req.session["currentUser"]);
+    } else {
+      res.sendStatus(403);
+    }
+  };*/
+
   const profile = async (req, res) => {
     res.sendStatus(403);
   };
@@ -66,6 +74,26 @@ const UsersController = (app) => {
   const logout = (req, res) => {
     req.session.destroy();
     res.sendStatus(200);
+  };
+
+  const findUserById = async (req, res) => {
+    const username = req.body.username;
+    const user = await dao.findUserById(username);
+    if (user) {
+      res.json(user);
+      return;
+    }
+    res.sendStatus(404);
+  };
+
+  const findUserByUsername = async (req, res) => {
+    const username = req.body.username;
+    const user = await dao.findUserByUsername(username);
+    if (user) {
+      res.json(user);
+      return;
+    }
+    res.sendStatus(404);
   };
 
   app.post("/users", createUser);
@@ -83,6 +111,10 @@ const UsersController = (app) => {
   app.post("/profile", profile);
 
   app.post("/logout", logout);
+
+  // app.get("/profile/:username", findUserById);
+
+  app.get("/profile/:username", findUserByUsername);
 };
 
 export default UsersController;

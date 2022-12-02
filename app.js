@@ -5,6 +5,7 @@ import session from "express-session";
 import UsersController from "./users/users-controller.js";
 import ReviewsController from "./reviews/reviews-controller.js";
 import bookmarkController from "./bookmarks/bookmark-controller.js";
+import SessionController from "./session-controller.js";
 
 /*const options = {
   useNewUrlParser: true,
@@ -43,5 +44,6 @@ app.use(express.json());
 UsersController(app);
 ReviewsController(app);
 bookmarkController(app);
+SessionController(app);
 
 app.listen(process.env.PORT || 4000);

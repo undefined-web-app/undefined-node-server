@@ -10,7 +10,9 @@ export const register = async (user) => {
 
 export const findAllUsers = () => usersModel.find();
 
-export const findUserById = (uid) => usersModel.findById(uid);
+export const findUserByUsername = (username) => usersModel.findOne(username);
+
+export const findUserById = (username) => usersModel.findById(username);
 
 export const findByUsername = (username) => usersModel.findOne({ username });
 
