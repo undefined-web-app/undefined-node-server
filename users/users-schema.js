@@ -14,7 +14,7 @@ const usersSchema = mongoose.Schema(
       enum: ["ADMIN", "NORMAL_USER", "REVIEWER"],
     },
     likes: {
-      type: [String],
+      type: Array,
       default: []
     }
   },

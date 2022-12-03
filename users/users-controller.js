@@ -65,12 +65,11 @@ const UsersController = (app) => {
     res.sendStatus(200);
   };
 
-  const addLike = (req, res) => {
-    const uid = req.body.uid;
+  const addLike = async (req, res) => {
+    const liked = req.body.liked;
     const username = req.body.username;
-    console.log(username);
-    dao.addLike(uid, username);
-    res.json({username, uid});
+    await dao.addLike(liked, username);
+    res.json({liked, username});
   }
 
   const findUserByUsername = async (req, res) => {
