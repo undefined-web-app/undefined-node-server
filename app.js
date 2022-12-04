@@ -28,8 +28,8 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
-    // origin: "https://main--meek-klepon-26408d.netlify.app",
+    // origin: "http://localhost:3000",
+    origin: "https://main--meek-klepon-26408d.netlify.app",
   })
 );
 app.use(
