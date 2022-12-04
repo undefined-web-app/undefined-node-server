@@ -48,12 +48,12 @@ const UsersController = (app) => {
       credentials.username,
       credentials.password
     );
-    if (!existingUser) {
-      res.sendStatus(403);
-      return;
+    if (existingUser) {
+      req.session["currentUser"] = existingUser;
+      res.json(existingUser);
+      return
     }
-    req.session["currentUser"] = existingUser;
-    res.json(existingUser);
+    res.sendStatus(403)
   };
 
   const profile = async (req, res) => {
