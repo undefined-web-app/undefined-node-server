@@ -29,7 +29,7 @@ app.use(
   cors({
     credentials: true,
     // origin: "http://localhost:3000",
-    origin: "https://638bc6b5bb6c0b79ec27367b--meek-klepon-26408d.netlify.app",
+    origin: "https://main--meek-klepon-26408d.netlify.app/",
   })
 );
 app.use(
