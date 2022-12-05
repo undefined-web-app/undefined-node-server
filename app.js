@@ -29,7 +29,7 @@ app.use(
   cors({
     credentials: true,
     // origin: "http://localhost:3000",
-    origin: "https://main--meek-klepon-26408d.netlify.app",
+    origin: "https://www.undefinedmoviesreview.com/",
   })
 );
 
