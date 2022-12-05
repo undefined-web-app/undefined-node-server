@@ -32,12 +32,14 @@ app.use(
     origin: "https://main--meek-klepon-26408d.netlify.app",
   })
 );
+
+app.enable('trust proxy');
 app.use(
   session({
     secret: "should be environment variable!",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
+    cookie: { secure: true, sameSite: 'none' },
   })
 );
 app.use(express.json());
